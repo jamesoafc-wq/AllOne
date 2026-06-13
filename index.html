@@ -99,7 +99,15 @@
         radial-gradient(circle at 90% 20%,rgba(139,92,246,.38),transparent 34%),
         linear-gradient(135deg,rgba(255,255,255,.14),rgba(255,255,255,.065));
     }
+    .metric:after{
+      content:"";position:absolute;inset:-40% -70%;
+      background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.16) 47%,rgba(255,255,255,.34) 50%,rgba(255,255,255,.14) 53%,transparent 65%);
+      transform:translateX(-58%) rotate(7deg);
+      animation:sweepGlow 8.5s ease-in-out infinite;
+      pointer-events:none;
+    }
     .hero:after{content:"";position:absolute;right:-44px;top:-34px;width:142px;height:142px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05)}
+    @keyframes sweepGlow{0%,58%{transform:translateX(-58%) rotate(7deg);opacity:0}68%{opacity:1}88%{transform:translateX(58%) rotate(7deg);opacity:.85}100%{transform:translateX(58%) rotate(7deg);opacity:0}}
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
     .two{display:grid;grid-template-columns:1fr;gap:12px}
     .row{display:flex;gap:10px;align-items:center}.row>*{flex:1}.row.tight>*{flex:0 0 auto}.row.wraprow{flex-wrap:wrap}
@@ -127,13 +135,16 @@
     .btn.good{background:rgba(83,240,182,.14);border:1px solid rgba(83,240,182,.28);box-shadow:none;color:#dcfff3}
     .btn.full{width:100%;margin-top:12px}
     .btn.smallbtn{min-height:38px;border-radius:14px;padding:8px 10px;font-size:12px}
-    .metric{min-height:114px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
-    .metric b{font-size:22px;letter-spacing:-.04em;position:relative}.metric span{font-size:11px;color:var(--muted);font-weight:1000;text-transform:uppercase;letter-spacing:.08em;position:relative}
+    .metric{min-height:118px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+    .metric b{font-size:22px;letter-spacing:-.04em;position:relative;z-index:1}.metric span{font-size:11px;color:var(--muted);font-weight:1000;text-transform:uppercase;letter-spacing:.08em;position:relative;z-index:1}
     .metric:before{content:"";position:absolute;right:-30px;top:-30px;width:90px;height:90px;border-radius:999px;background:rgba(255,255,255,.08)}
-    .metric.done{background:linear-gradient(145deg,rgba(74,222,128,.32),rgba(168,85,247,.11));border-color:rgba(74,222,128,.82);box-shadow:0 0 0 1px rgba(74,222,128,.24),0 0 32px rgba(74,222,128,.35),0 18px 44px rgba(0,0,0,.26);}
+    .metric.done{background:linear-gradient(145deg,rgba(74,222,128,.32),rgba(168,85,247,.11));border-color:rgba(74,222,128,.82);box-shadow:0 0 0 1px rgba(74,222,128,.24),0 0 34px rgba(74,222,128,.38),0 18px 44px rgba(0,0,0,.26);}
     .metric.done b{color:#ecfff4;text-shadow:0 0 18px rgba(74,222,128,.82)}
     .metric.miss{background:linear-gradient(145deg,rgba(251,113,133,.2),rgba(255,255,255,.07));border-color:rgba(251,113,133,.38)}
-    .bigcheck{position:absolute;right:12px;top:10px;width:36px;height:36px;border-radius:999px;display:grid;place-items:center;font-size:23px;font-weight:1000;background:rgba(74,222,128,.22);border:1px solid rgba(74,222,128,.65);box-shadow:0 0 24px rgba(74,222,128,.55);color:#ecfff4}
+    .metric .pill{position:relative;z-index:1;align-self:flex-start;padding:6px 9px}
+    .statusline{display:flex;align-items:center;justify-content:space-between;gap:8px;position:relative;z-index:1}
+    .statusline b{font-size:20px}
+    .bigcheck{position:static;width:30px;height:30px;border-radius:999px;display:grid;place-items:center;font-size:20px;font-weight:1000;background:rgba(74,222,128,.22);border:1px solid rgba(74,222,128,.65);box-shadow:0 0 24px rgba(74,222,128,.55);color:#ecfff4;flex:0 0 30px}
     .notice{background:rgba(250,204,21,.1);border:1px solid rgba(250,204,21,.24);color:#fff0ad;border-radius:18px;padding:12px;font-size:13px}
     .pill{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;padding:7px 11px;background:rgba(255,255,255,.07);font-size:12px;font-weight:850;color:#eadfff}
     .list{display:flex;flex-direction:column;gap:10px}
@@ -149,11 +160,13 @@
     }
     .tabs::-webkit-scrollbar{display:none}
     .tab{
-      flex:0 0 94px;min-height:70px;border:1px solid rgba(255,255,255,.11);border-radius:22px;
-      background:rgba(255,255,255,.07);color:var(--muted);font-size:12px;font-weight:1000;
-      display:flex;flex-direction:column;gap:4px;align-items:center;justify-content:center;text-align:center;padding:8px 10px;
+      flex:0 0 76px;min-height:66px;border:1px solid rgba(255,255,255,.11);border-radius:20px;
+      background:rgba(255,255,255,.07);color:var(--muted);font-size:11px;font-weight:1000;
+      display:flex;flex-direction:column;gap:3px;align-items:center;justify-content:center;text-align:center;padding:7px 7px;
     }
-    .tab span:first-child{font-size:18px;line-height:1}.tab.active{color:white;background:linear-gradient(135deg,rgba(139,92,246,.96),rgba(236,72,153,.86));border-color:rgba(255,255,255,.25);box-shadow:0 14px 28px rgba(168,85,247,.24)}
+    .tab .tabico{width:22px;height:22px;display:grid;place-items:center;color:inherit;opacity:.96}
+    .tab .tabico .icon-svg{width:20px;height:20px;stroke-width:2}
+    .tab span:last-child{line-height:1}.tab.active{color:white;background:linear-gradient(135deg,rgba(139,92,246,.96),rgba(236,72,153,.86));border-color:rgba(255,255,255,.25);box-shadow:0 14px 28px rgba(168,85,247,.24)}
     .exrow{display:flex;align-items:center;gap:10px}.exrow .excopy{min-width:0;flex:1}.exname{font-weight:1000}.exmeta{color:var(--muted);font-size:12px;margin-top:2px}
     .exicon,.miniicon{display:grid;place-items:center;color:#fff;border:1px solid rgba(255,255,255,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.18)}
     .exicon{width:42px;height:42px;border-radius:16px;flex:0 0 42px}
@@ -168,14 +181,15 @@
     .setchip button{border:0;background:rgba(255,255,255,.12);color:#fff;border-radius:999px;width:22px;height:22px;font-weight:1000}
     .prevline{font-size:12px;color:#d9ceeb;margin-top:8px;padding:8px 9px;background:rgba(255,255,255,.055);border-radius:14px;border:1px solid rgba(255,255,255,.09)}
     .calendar-card{padding:12px}.calendar-top{display:flex;align-items:end;gap:10px;margin-bottom:8px}.calendar-top h2{margin:0;flex:1}.calendar-top label{margin:0 0 5px}.month-control{flex:0 0 146px;max-width:146px}.calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}.day{min-width:0;min-height:72px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.06);padding:5px;font-size:11px;overflow:hidden}.day.out{opacity:.45}.day .num{font-weight:1000;font-size:13px;margin-bottom:5px;color:white}.day.today{border-color:rgba(236,72,153,.75);box-shadow:0 0 0 2px rgba(236,72,153,.14),0 0 22px rgba(236,72,153,.22)}.calmarks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px}.calmark{min-width:0;height:25px;border-radius:9px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.1);font-weight:1000}.calmark .icon-svg{width:12px;height:12px;stroke-width:2.2}.calmark.ok{background:rgba(74,222,128,.22);border-color:rgba(74,222,128,.68);box-shadow:0 0 12px rgba(74,222,128,.36);color:#ecfff4}.calmark.no{background:rgba(251,113,133,.17);border-color:rgba(251,113,133,.42);color:#ffdce3}.weekday{font-size:9px;text-align:center;color:var(--muted);font-weight:1000;text-transform:uppercase;letter-spacing:.03em}
-    .barbox{height:200px;border-left:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:flex-end;padding:8px;margin-top:10px;overflow-x:auto}.bar{min-width:36px;background:linear-gradient(180deg,var(--pink),var(--purple));border-radius:12px 12px 0 0;position:relative;box-shadow:0 12px 24px rgba(168,85,247,.18)}.bar span{position:absolute;bottom:-20px;left:0;right:0;text-align:center;font-size:10px;color:var(--muted);font-weight:900}.bar i{position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-style:normal;font-size:10px;color:#fff;font-weight:900}
+    .barbox{height:178px;border-left:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:flex-end;padding:22px 8px 23px;margin-top:8px;overflow-x:auto}.bar{min-width:36px;background:linear-gradient(180deg,var(--pink),var(--purple));border-radius:12px 12px 0 0;position:relative;box-shadow:0 12px 24px rgba(168,85,247,.18)}.bar span{position:absolute;bottom:-18px;left:0;right:0;text-align:center;font-size:10px;color:var(--muted);font-weight:900}.bar i{position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-style:normal;font-size:10px;color:#fff;font-weight:900}
     .hidden{display:none!important}.divider{height:1px;background:var(--line);margin:13px 0}.spacer{height:8px}
     @media(max-width:430px){
       .wrap{padding:10px 8px 18px}.card{padding:14px}.grid{gap:8px}.metric{min-height:104px;padding:12px}.metric b{font-size:19px}.metric span{font-size:10px}.bigcheck{width:32px;height:32px;font-size:20px}
       input[type="date"],input[type="month"]{min-height:42px;padding:9px 8px;font-size:14px}
       .calendar-card{padding:9px 7px}.calendar-top{gap:8px;margin-bottom:6px}.calendar-top h2{font-size:21px}.month-control{flex:0 0 132px;max-width:132px}
       .calendar{gap:3px}.day{min-height:58px;padding:3px;border-radius:11px}.day .num{font-size:11px;margin-bottom:3px}.calmarks{gap:1px}.calmark{height:21px;border-radius:7px}.calmark .icon-svg{width:9.5px;height:9.5px;stroke-width:2.5}.weekday{font-size:8px}
-      .setline{grid-template-columns:1fr 1fr}.setline .btn{grid-column:1/-1}.tab{flex-basis:88px;min-height:68px}header h1{font-size:24px}.logo{width:44px;height:44px}
+      .barbox{height:160px;padding:20px 8px 22px}.bar span{bottom:-17px}
+      .setline{grid-template-columns:1fr 1fr}.setline .btn{grid-column:1/-1}.tab{flex-basis:72px;min-height:64px}.tab .tabico{width:21px;height:21px}.tab .tabico .icon-svg{width:19px;height:19px}.tabs{gap:6px;padding-left:8px;padding-right:8px}header h1{font-size:24px}.logo{width:44px;height:44px}
     }
     @media(min-width:700px){.two{grid-template-columns:1fr 1fr}.tabs{max-width:980px;left:50%;transform:translateX(-50%);border-radius:30px 30px 0 0}.day{min-height:92px}.wrap{padding:20px}.calendar-card{padding:16px}.calmark{height:32px}.calmark .icon-svg{width:15px;height:15px}.setline{grid-template-columns:1fr 1fr 140px}}
   </style>
@@ -196,12 +210,12 @@
   <section id="progress" class="section"></section>
 </main>
 <nav class="tabs">
-  <button class="tab active" data-tab="dashboard"><span>01</span><span>Home</span></button>
-  <button class="tab" data-tab="gym"><span>02</span><span>Gym</span></button>
-  <button class="tab" data-tab="nutrition"><span>03</span><span>Food</span></button>
-  <button class="tab" data-tab="habits"><span>04</span><span>Habits</span></button>
-  <button class="tab" data-tab="calendar"><span>05</span><span>Calendar</span></button>
-  <button class="tab" data-tab="progress"><span>06</span><span>Progress</span></button>
+  <button class="tab active" data-tab="dashboard"><span class="tabico"><svg viewBox="0 0 24 24" class="icon-svg" aria-hidden="true"><path d="M4 11.5 12 5l8 6.5"></path><path d="M6.5 10.5V19h11v-8.5"></path><path d="M10 19v-5h4v5"></path></svg></span><span>Home</span></button>
+  <button class="tab" data-tab="gym"><span class="tabico"><svg viewBox="0 0 24 24" class="icon-svg" aria-hidden="true"><path d="M3 10v4"></path><path d="M6 8v8"></path><path d="M9 9v6"></path><path d="M15 9v6"></path><path d="M18 8v8"></path><path d="M21 10v4"></path><path d="M6 12h12"></path></svg></span><span>Gym</span></button>
+  <button class="tab" data-tab="nutrition"><span class="tabico"><svg viewBox="0 0 24 24" class="icon-svg" aria-hidden="true"><path d="M8.5 6.5c1.8-1.5 4.8-2 7.1-.9 3.2 1.6 4.2 5.5 2.3 8.3-1.9 2.8-5.8 4.1-9.2 3.2C5.4 16.3 4 13.1 4.8 10.2c.4-1.4 1.5-2.7 3.7-3.7z"></path><circle cx="15.8" cy="10" r="1.8"></circle><path d="M7.6 14.8c.8.7 2.1 1.2 3.5 1.2"></path></svg></span><span>Food</span></button>
+  <button class="tab" data-tab="habits"><span class="tabico"><svg viewBox="0 0 24 24" class="icon-svg" aria-hidden="true"><path d="M7 7a7 7 0 0 1 10.5 1"></path><path d="M18 4v4h-4"></path><path d="M17 17a7 7 0 0 1-10.5-1"></path><path d="M6 20v-4h4"></path></svg></span><span>Habits</span></button>
+  <button class="tab" data-tab="calendar"><span class="tabico"><svg viewBox="0 0 24 24" class="icon-svg" aria-hidden="true"><path d="M7 4v3"></path><path d="M17 4v3"></path><path d="M5 8h14"></path><path d="M6 6h12c1 0 1.6.6 1.6 1.6v10.8c0 1-.6 1.6-1.6 1.6H6c-1 0-1.6-.6-1.6-1.6V7.6C4.4 6.6 5 6 6 6z"></path><path d="M8 12h.1"></path><path d="M12 12h.1"></path><path d="M16 12h.1"></path><path d="M8 16h.1"></path><path d="M12 16h.1"></path></svg></span><span>Calendar</span></button>
+  <button class="tab" data-tab="progress"><span class="tabico"><svg viewBox="0 0 24 24" class="icon-svg" aria-hidden="true"><path d="M4 18h16"></path><path d="M7 15l3-3 3 2 4-6"></path><path d="M17 8h-3"></path><path d="M17 8v3"></path></svg></span><span>Progress</span></button>
 </nav>
 <script>
 (function(){
@@ -238,6 +252,14 @@ function svg(type, cls='icon-svg'){const icons={
 function catGlyph(cat){return {chest:'chest',back:'back',legs:'legs',shoulders:'shoulders',arms:'arms',core:'core',cardio:'cardio',full:'dumbbell'}[cat]||'dumbbell'}
 function icon(name, small){let c=category(name); return `<span class="${small?'miniicon':'exicon'} cat-${c}">${svg(catGlyph(c), 'icon-svg')}</span>`}
 function trackerIcon(kind, small){let t={gym:'dumbbell',habits:'habits',protein:'steak'}[kind]||'dumbbell'; return svg(t, small?'icon-svg':'icon-svg')}
+function tabIcon(kind){const icons={
+  dashboard:`<svg viewBox="0 0 24 24" class="icon-svg" aria-hidden="true"><path d="M4 11.5 12 5l8 6.5"></path><path d="M6.5 10.5V19h11v-8.5"></path><path d="M10 19v-5h4v5"></path></svg>`,
+  gym:svg('dumbbell','icon-svg'),
+  nutrition:svg('steak','icon-svg'),
+  habits:svg('habits','icon-svg'),
+  calendar:`<svg viewBox="0 0 24 24" class="icon-svg" aria-hidden="true"><path d="M7 4v3"></path><path d="M17 4v3"></path><path d="M5 8h14"></path><path d="M6 6h12c1 0 1.6.6 1.6 1.6v10.8c0 1-.6 1.6-1.6 1.6H6c-1 0-1.6-.6-1.6-1.6V7.6C4.4 6.6 5 6 6 6z"></path><path d="M8 12h.1"></path><path d="M12 12h.1"></path><path d="M16 12h.1"></path><path d="M8 16h.1"></path><path d="M12 16h.1"></path></svg>`,
+  progress:`<svg viewBox="0 0 24 24" class="icon-svg" aria-hidden="true"><path d="M4 18h16"></path><path d="M7 15l3-3 3 2 4-6"></path><path d="M17 8h-3"></path><path d="M17 8v3"></path></svg>`
+}; return `<span class="tabico">${icons[kind]||icons.dashboard}</span>`}
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function weekStart(dstr){let d=ymdToDate(dstr); let day=d.getDay(); let diff=(day===0?-6:1-day); d.setDate(d.getDate()+diff); return fmt(d)}
 function weekDates(dstr){let start=ymdToDate(weekStart(dstr)); return Array.from({length:7},(_,i)=>{let d=new Date(start); d.setDate(start.getDate()+i); return fmt(d)})}
@@ -251,12 +273,17 @@ function setTab(name){$$('.tab').forEach(b=>b.classList.toggle('active',b.datase
 function render(){renderDashboard(); renderGym(); renderNutrition(); renderHabits(); renderCalendar(); renderProgress()}
 function nutritionForm(d,prefix){let n=state.nutrition[d]||{calories:'',protein:''}; return `<label>Calories</label><input id="${prefix}_cal" type="number" value="${n.calories||''}" placeholder="${state.goals.calories}"><label>Protein grams</label><input id="${prefix}_pro" type="number" value="${n.protein||''}" placeholder="${state.goals.protein}"><button class="btn full" onclick="app.saveNutrition('${d}','${prefix}')">Save nutrition</button>`}
 function habitChecklist(d,prefix,showSave){if(!state.habits.length)return '<p class="muted">No habits yet. Add some on the Habits tab.</p>'; return '<div class="list">'+state.habits.map(h=>`<label class="item row"><span>${esc(h.name)}</span><input id="${prefix}_habit_${h.id}" style="width:auto;min-height:auto" type="checkbox" ${h.done&&h.done[d]?'checked':''}></label>`).join('')+'</div>'+(showSave?`<button class="btn full" onclick="app.saveHabitsForDate('${d}','${prefix}')">Save habits</button>`:'')}
-function renderDashboard(){let d=today(), score=dailyScore(d), week=weeklyWorkoutCount(d), goal=Number(state.goals.weeklyWorkouts||3), workouts=workoutsOn(d); $('#dashboard').innerHTML=`
- <div class="card hero"><h2>Today</h2><p class="muted">${new Date().toLocaleDateString(undefined,{weekday:'long',day:'numeric',month:'long'})}</p><div class="row wraprow"><span class="pill">${week} / ${goal} workouts this week</span><span class="pill">${state.nutrition[d]?.protein||0}g protein</span><span class="pill">${workouts.length} gym log${workouts.length===1?'':'s'} today</span></div></div>
- <div class="grid"><div class="card metric ${score[0]?'done':'miss'}">${score[0]?'<div class="bigcheck">✓</div>':''}<div class="pill">${trackerIcon('gym',true)}<span style="font-size:11px;color:inherit;letter-spacing:.04em">Gym</span></div><b>${score[0]?'Complete':'Missing'}</b><span>Gym today</span></div><div class="card metric ${score[1]?'done':'miss'}">${score[1]?'<div class="bigcheck">✓</div>':''}<div class="pill">${trackerIcon('habits',true)}<span style="font-size:11px;color:inherit;letter-spacing:.04em">Habits</span></div><b>${score[1]?'Complete':'Missing'}</b><span>Habits today</span></div><div class="card metric ${score[2]?'done':'miss'}">${score[2]?'<div class="bigcheck">✓</div>':''}<div class="pill">${trackerIcon('protein',true)}<span style="font-size:11px;color:inherit;letter-spacing:.04em">Protein</span></div><b>${score[2]?'Complete':'Missing'}</b><span>Protein goal</span></div></div>
- <div class="card"><h2>This week</h2><p><b>${week} / ${goal}</b> workouts completed Monday to Sunday.</p><div class="notice">Each saved workout counts once, even if that workout contains multiple exercises.</div></div>
+function renderDashboard(){let d=today(), score=dailyScore(d), week=weeklyWorkoutCount(d), goal=Number(state.goals.weeklyWorkouts||3), workouts=workoutsOn(d), done=score.filter(Boolean).length; $('#dashboard').innerHTML=`
+ <div class="card hero"><h2>Today</h2><p class="muted">${new Date().toLocaleDateString(undefined,{weekday:'long',day:'numeric',month:'long'})}</p><p class="muted">${done} / 3 daily goals complete</p></div>
+ <div class="grid">
+  <div class="card metric ${score[0]?'done':'miss'}"><div class="pill">${trackerIcon('gym',true)}<span style="font-size:11px;color:inherit;letter-spacing:.04em">Gym</span></div><div class="statusline"><b>${score[0]?'Done':'Missing'}</b>${score[0]?'<div class="bigcheck">✓</div>':''}</div><span>${workouts.length?workouts.length+' workout today':'No workout yet'}</span></div>
+  <div class="card metric ${score[1]?'done':'miss'}"><div class="pill">${trackerIcon('habits',true)}<span style="font-size:11px;color:inherit;letter-spacing:.04em">Habits</span></div><div class="statusline"><b>${score[1]?'Done':'Missing'}</b>${score[1]?'<div class="bigcheck">✓</div>':''}</div><span>Daily habit list</span></div>
+  <div class="card metric ${score[2]?'done':'miss'}"><div class="pill">${trackerIcon('protein',true)}<span style="font-size:11px;color:inherit;letter-spacing:.04em">Protein</span></div><div class="statusline"><b>${score[2]?'Done':'Missing'}</b>${score[2]?'<div class="bigcheck">✓</div>':''}</div><span>${state.goals.protein}g target</span></div>
+ </div>
+ <div class="card"><h2>This week</h2><p><b>${week} / ${goal}</b> workouts completed Monday to Sunday.</p></div>
  <div class="two"><div class="card"><h3>Quick nutrition today</h3>${nutritionForm(d,'dash')}</div><div class="card"><h3>Today habits</h3>${habitChecklist(d,'dash',true)}</div></div>
  <div class="card"><h3>Settings</h3><div class="row"><div><label>Protein goal (g)</label><input id="goalProtein" type="number" value="${state.goals.protein}"></div><div><label>Calories goal</label><input id="goalCalories" type="number" value="${state.goals.calories}"></div></div><label>Weekly workout goal</label><input id="goalWeekly" type="number" value="${state.goals.weeklyWorkouts}"><button class="btn full" onclick="app.saveGoals()">Save goals</button></div>`}
+
 function exerciseOptions(selected){return state.exercises.map(e=>`<option value="${esc(e)}" ${e===selected?'selected':''}>${esc(e)}</option>`).join('')}
 function renderGym(){let d=state.draftWorkout; if(!d.date)d.date=today(); let selected=ui.recentExercise||state.exercises[0]; $('#gym').innerHTML=`
  <div class="card workout-card"><h2>Build workout</h2><p class="muted">Add as many exercises as you want, then save the whole workout once.</p><label>Date</label><input id="workoutDate" type="date" value="${d.date}" onchange="app.setDraftDate(this.value)"><label>Workout name optional</label><input id="workoutTitle" value="${esc(d.title||'')}" placeholder="Push day, Pull day, Legs..." oninput="app.setDraftTitle(this.value)"><div class="divider"></div><label>Add exercise</label><div class="row"><select id="exerciseSelect" onchange="app.pickExercise(this.value)">${exerciseOptions(selected)}</select><button class="btn" onclick="app.addExerciseToWorkout()">Add</button></div><div class="prevline">The icons now use simple built-in line art, so the app looks cleaner and still stays safe for GitHub Pages.</div></div>
@@ -272,7 +299,8 @@ function renderNutrition(){let d=ui.nutritionDate||today(); $('#nutrition').inne
 function nutritionHistory(){let out=[]; for(let i=13;i>=0;i--){let d=new Date(); d.setDate(d.getDate()-i); let k=fmt(d), n=state.nutrition[k]||{}; out.push(`<div class="item row"><span>${k}</span><span class="right">${n.calories||0} cal / ${n.protein||0}g protein</span></div>`)} return '<div class="list">'+out.join('')+'</div>'}
 function renderHabits(){let d=ui.habitDate||today(); $('#habits').innerHTML=`<div class="card"><h2>Habits</h2><p class="muted">Tick the habits for the selected date, then tap Save habits.</p><label>Date</label><input id="habitDate" type="date" value="${d}" onchange="app.setHabitDate(this.value)">${habitChecklist(d,'habits',true)}</div><div class="card"><h3>Add habit</h3><div class="row"><input id="newHabit" placeholder="Habit name"><button class="btn" onclick="app.addHabit()">Add</button></div></div><div class="card"><h3>Manage habits</h3>${state.habits.map(h=>`<div class="item row"><span>${esc(h.name)}</span><button class="btn danger smallbtn" onclick="app.deleteHabit('${h.id}')">Delete</button></div>`).join('')||'<p class="muted">No habits.</p>'}</div>`}
 function renderCalendar(){let base=$('#monthPick')?.value||monthKey(new Date()); let parts=base.split('-').map(Number), first=new Date(parts[0],parts[1]-1,1,12), start=new Date(first); let offset=(first.getDay()+6)%7; start.setDate(first.getDate()-offset); let cells=[]; for(let i=0;i<42;i++){let d=new Date(start); d.setDate(start.getDate()+i); let k=fmt(d), s=dailyScore(k), out=d.getMonth()!==first.getMonth()?' out':'', isToday=k===today()?' today':''; cells.push(`<div class="day${out}${isToday}"><div class="num">${d.getDate()}</div><div class="calmarks"><span class="calmark ${s[0]?'ok':'no'}" title="Gym">${trackerIcon('gym',true)}</span><span class="calmark ${s[1]?'ok':'no'}" title="Habits">${trackerIcon('habits',true)}</span><span class="calmark ${s[2]?'ok':'no'}" title="Protein">${trackerIcon('protein',true)}</span></div></div>`)} $('#calendar').innerHTML=`<div class="card calendar-card"><div class="calendar-top"><h2>Calendar</h2><div class="month-control"><label>Month</label><input id="monthPick" type="month" value="${base}" onchange="app.render()"></div></div><div class="calendar"><div class="weekday">Mon</div><div class="weekday">Tue</div><div class="weekday">Wed</div><div class="weekday">Thu</div><div class="weekday">Fri</div><div class="weekday">Sat</div><div class="weekday">Sun</div>${cells.join('')}</div><p class="muted small" style="margin:10px 2px 0">${trackerIcon('gym',true)} Gym · ${trackerIcon('habits',true)} Habits · ${trackerIcon('protein',true)} Protein</p></div>`}
-function renderProgress(){let selected=$('#progressExercise')?.value||ui.progressExercise||state.exercises[0]; ui.progressExercise=selected; let pts=progressPoints(selected); let max=Math.max(1,...pts.map(p=>p.value)); let bars=pts.slice(-12).map(p=>`<div class="bar" style="height:${Math.max(8,(p.value/max)*150)}px"><i>${p.value}</i><span>${p.date.slice(5)}</span></div>`).join('')||'<p class="muted">No data yet.</p>'; $('#progress').innerHTML=`<div class="card"><h2>Progress</h2><label>Exercise</label><select id="progressExercise" onchange="app.setProgressExercise(this.value)">${exerciseOptions(selected)}</select><p class="muted">Chart shows best estimated one rep max per workout: weight x (1 + reps / 30).</p><div class="barbox">${bars}</div></div><div class="card"><h3>Exercise icons</h3><p class="muted">Each workout type now has a simple built-in icon, including a rounded shoulder icon for shoulder work. No image uploads needed.</p><div class="row wraprow">${['Bench Press','Lat Pulldown','Squat','Shoulder Press','Bicep Curl','Plank','Treadmill Run','Clean and Press'].map(n=>`<span class="pill">${icon(n,true)} ${catText(category(n))}</span>`).join('')}</div></div><div class="card"><h3>Backup</h3><button class="btn full" onclick="app.exportData()">Export JSON backup</button><label>Import JSON backup</label><textarea id="importBox" rows="5" placeholder="Paste backup here"></textarea><button class="btn secondary full" onclick="app.importData()">Import backup</button></div>`}
+function renderProgress(){let selected=$('#progressExercise')?.value||ui.progressExercise||state.exercises[0]; ui.progressExercise=selected; let pts=progressPoints(selected); let max=Math.max(1,...pts.map(p=>p.value)); let bars=pts.slice(-12).map(p=>`<div class="bar" style="height:${Math.max(8,(p.value/max)*120)}px"><i>${p.value}</i><span>${p.date.slice(5)}</span></div>`).join('')||'<p class="muted">No data yet.</p>'; $('#progress').innerHTML=`<div class="card"><h2>Progress</h2><label>Exercise</label><select id="progressExercise" onchange="app.setProgressExercise(this.value)">${exerciseOptions(selected)}</select><p class="muted">Best estimated one rep max per workout.</p><div class="barbox">${bars}</div></div><div class="card"><h3>Backup</h3><button class="btn full" onclick="app.exportData()">Export JSON backup</button><label>Import JSON backup</label><textarea id="importBox" rows="5" placeholder="Paste backup here"></textarea><button class="btn secondary full" onclick="app.importData()">Import backup</button></div>`}
+
 function progressPoints(ex){let pts=[]; state.workouts.forEach(w=>(w.exercises||[]).forEach(e=>{if(e.name===ex){let best=0; (e.sets||[]).forEach(s=>{let val=Number(s.weight)*(1+Number(s.reps)/30); if(val>best)best=val}); if(best)pts.push({date:w.date,value:Math.round(best)})}})); return pts}
 window.app={
   render,

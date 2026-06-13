@@ -1,9 +1,8 @@
-# All In One Fit - Mobile Calendar Fix
+# All In One Fit - Slower Tile Glow
 
-This update tightens the iPhone layout:
-- Date and month controls are smaller and constrained to the screen width.
-- Calendar page removes wasted space.
-- Calendar day cells are more compact.
-- All three icons per day are reduced to fit properly on phone screens.
+Changes:
+- Removed the sweeping glow animation from the Today tile.
+- Slowed the sweeping glow animation on the three daily tracker tiles.
+- No app logic or storage changes.
 
-Upload `index.html` to the GitHub repo root and open with `?v=7`.
+Upload `index.html` to the GitHub repo root and open with `?v=10`.
