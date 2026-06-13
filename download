@@ -1,0 +1,68 @@
+# AllInOneFit Web PWA
+
+A GitHub Pages-ready iPhone web app/PWA for:
+
+- Gym tracking with preloaded exercises
+- Sets, reps and weight logging
+- Previous set reference while logging
+- Exercise progress charts
+- Habit tracking
+- Calories and protein tracking
+- Daily 3-tick calendar: **Gym / Habits / Protein**
+- Monday-to-Sunday weekly workout goal pass/fail view
+- Local private storage in the browser
+- Export/import JSON backup
+
+No App Store, Xcode, build tools, server or database required.
+
+## How to put it on GitHub Pages
+
+1. Create a new GitHub repository, for example `allinonefit`.
+2. Upload all files from this folder to the repository root:
+   - `index.html`
+   - `styles.css`
+   - `app.js`
+   - `site.webmanifest`
+   - `service-worker.js`
+   - `assets/`
+3. In GitHub, go to **Settings -> Pages**.
+4. Under **Build and deployment**, choose:
+   - Source: **Deploy from a branch**
+   - Branch: **main**
+   - Folder: **/root**
+5. Save, then open the published GitHub Pages URL on your iPhone in Safari.
+
+Your URL will usually look like:
+
+```text
+https://YOUR-GITHUB-USERNAME.github.io/allinonefit/
+```
+
+## Add it to your iPhone Home Screen
+
+1. Open the GitHub Pages URL in **Safari**.
+2. Tap the **Share** icon.
+3. Tap **Add to Home Screen**.
+4. Tap **Add**.
+
+It will open like an app from your Home Screen.
+
+## Data storage and privacy
+
+The app stores your workouts, food logs, habits and settings in Safari/local browser storage on the device. It does not send data anywhere.
+
+Important: because data is local, use **Settings -> Backup -> Export JSON** inside the app before clearing Safari data, changing phone, or changing browser.
+
+## Customising defaults
+
+Open `app.js` and edit:
+
+- `DEFAULT_EXERCISES` for the preloaded exercise library
+- `defaultState().goals` for default weekly workouts, protein goal and calorie target
+- `defaultState().habits` for starting habits
+
+## Notes
+
+- GitHub Pages works over HTTPS, which is required for PWA service workers.
+- iOS Safari supports Home Screen web apps, but the install prompt button is mainly for browsers that support the `beforeinstallprompt` event. On iPhone, use Safari Share -> Add to Home Screen.
+- This is a local-first MVP. It does not include login or cloud sync.
